@@ -1,5 +1,6 @@
 require 'rack'
 require 'font_assets/mime_types'
+require 'pathname'
 
 module FontAssets
   class Middleware
@@ -58,7 +59,7 @@ module FontAssets
     end
 
     def extension(path)
-      "." + path.split("?").first.split(".").last
+      Pathname.new(path).extname
     end
 
     def font_asset?(path)
